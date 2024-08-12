@@ -12,7 +12,7 @@ class $modify(MyHardStreak, HardStreak) {
 			return true;
 		}
 
-		constexpr auto threshold = 0.05f;
+		constexpr auto threshold = 0.1f;
 
 		auto rounded = ccp(norm.x, std::roundf(norm.y));
 		auto absY = std::fabs(rounded.y);
