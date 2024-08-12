@@ -8,11 +8,11 @@ class $modify(MyHardStreak, HardStreak) {
 		auto diff = p0 - p1;
 		auto norm = diff / diff.x;
 
-		if (norm.x == 0.f) {
-			return false;
+		if (norm.y == 0.f) {
+			return true;
 		}
 
-		constexpr auto threshold = 0.02f;
+		constexpr auto threshold = 0.05f;
 
 		auto rounded = ccp(norm.x, std::roundf(norm.y));
 		auto absY = std::fabs(rounded.y);
