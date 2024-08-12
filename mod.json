@@ -13,11 +13,6 @@
 	"description": "Snaps the wave trail to nearest full angles",
 	"dependencies": [
 		{
-			"id": "nytelyte.wave_trail_drag_fix",
-			"importance": "recommended",
-			"version": ">=1.3.0"
-		},
-		{
 			"id": "sabe.trailfix",
 			"importance": "recommended",
 			"version": ">=1.0.0"
