@@ -2,12 +2,14 @@
 
 using namespace geode::prelude;
 
+static constexpr float s_skipThreshold = 0.1f;
+
 #include <Geode/modify/HardStreak.hpp>
 class $modify(MyHardStreak, HardStreak) {
 	bool snapPoints(cocos2d::CCPoint p0, cocos2d::CCPoint& p1) {
 		auto diff = p0 - p1;
 
-		if (diff.x < 0.01f || std::fabs(diff.y) < 0.01f) {
+		if (diff.x < s_skipThreshold || std::fabs(diff.y) < s_skipThreshold) {
 			return true;
 		}
 
@@ -47,8 +49,9 @@ class $modify(MyHardStreak, HardStreak) {
 		// Deduplication
 		if (m_pointArray->count() > 0) {
 			auto const lastPoint = static_cast<NodePoint*>(m_pointArray->lastObject())->m_point;
-			if (lastPoint == point) return;
+			if (lastPoint.getDistance(point) < s_skipThreshold) return;
 		}
+		log::debug("Adding point {}", point);
 		HardStreak::addPoint(point);
 	}
 };
