@@ -51,7 +51,6 @@ class $modify(MyHardStreak, HardStreak) {
 			auto const lastPoint = static_cast<NodePoint*>(m_pointArray->lastObject())->m_point;
 			if (lastPoint.getDistance(point) < s_skipThreshold) return;
 		}
-		log::debug("Adding point {}", point);
 		HardStreak::addPoint(point);
 	}
 };
