@@ -6,11 +6,12 @@ using namespace geode::prelude;
 class $modify(MyHardStreak, HardStreak) {
 	bool snapPoints(cocos2d::CCPoint p0, cocos2d::CCPoint& p1) {
 		auto diff = p0 - p1;
-		auto norm = diff / diff.x;
 
-		if (norm.y == 0.f) {
+		if (diff.x < 0.01f || std::fabs(diff.y) < 0.01f) {
 			return true;
 		}
+
+		auto norm = diff / diff.x;
 
 		constexpr auto threshold = 0.06f;
 
@@ -39,5 +40,15 @@ class $modify(MyHardStreak, HardStreak) {
 		}
 
 		HardStreak::updateStroke(dt);
+	}
+
+	$override
+	void addPoint(cocos2d::CCPoint point) {
+		// Deduplication
+		if (m_pointArray->count() > 0) {
+			auto const lastPoint = static_cast<NodePoint*>(m_pointArray->lastObject())->m_point;
+			if (lastPoint == point) return;
+		}
+		HardStreak::addPoint(point);
 	}
 };
