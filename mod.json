@@ -17,5 +17,9 @@
 			"importance": "recommended",
 			"version": ">=1.0.0"
 		}
-	]
+	],
+	"links": {
+		"community": "https://discord.gg/GFMnMMkpBq",
+		"source": "https://github.com/altalk23/WaveTrailSnap"
+	}
 }
